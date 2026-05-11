@@ -1,0 +1,22 @@
+# ------------ INSTALL DEPENDENCIES ------------
+FROM maven:3.9.15-eclipse-temurin-21-alpine AS builder
+
+WORKDIR /app
+
+# Copy pom.xml first and fetch dependencies (cached layer)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# ------------ BUILD SERVER ------------
+# Copy source and build
+COPY src ./src
+RUN mvn package -DskipTests -B
+
+# ------------ DEPLOY SERVER ------------
+FROM tomcat:10.1.0-jre17
+
+COPY --from=builder /app/target/vulnerable.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]
