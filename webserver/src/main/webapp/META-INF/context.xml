@@ -29,8 +29,7 @@
          maxIdleSwap="0" 
          minIdleSwap="0" 
          processExpiresFrequency="1">
-    <Store className="org.apache.catalina.session.FileStore" 
-           directory="${catalina.base}/webapps/ROOT/sessions"/>
+    <Store className="org.apache.catalina.session.FileStore" />
   </Manager>
 
 </Context>

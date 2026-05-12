@@ -22,9 +22,4 @@
     <servlet-name>default</servlet-name>
     <url-pattern>/uploads/*</url-pattern>
   </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>default</servlet-name>
-    <url-pattern>/uploads/secure/*</url-pattern>
-  </servlet-mapping>
 </web-app>
